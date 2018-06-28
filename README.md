@@ -1,5 +1,5 @@
 # masternodoocb
-Sistema Cartera tipo Master Nodo
+Master Nodo para la red OCB
 
 Debe descargar el ejecutable, luego hacer la instalación correspondiente, una vez instalado y al ejecutarse 
 deberá otorgarle los permisos según el Firewall de su máquina, el nodo detectará su IP pública y trabajará por el
