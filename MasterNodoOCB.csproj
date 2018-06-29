@@ -34,7 +34,7 @@
     <PublisherName>OCBCoin Corp.</PublisherName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>index.html</WebPage>
-    <ApplicationRevision>19</ApplicationRevision>
+    <ApplicationRevision>22</ApplicationRevision>
     <ApplicationVersion>0.11.5.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -140,6 +140,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="explorar.png" />
+    <None Include="logo-tusmasternodos.png" />
     <Content Include="ocbcoin.ico" />
     <Content Include="sqlite3.dll" />
   </ItemGroup>

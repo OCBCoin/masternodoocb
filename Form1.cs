@@ -651,14 +651,6 @@ namespace MasterNodoOCB
                     start = 0;
                 }
                 Program.procep = 0;
-                if (Convert.ToDouble(Program.MyMonedas) > 1000)
-                {
-                    button1.Enabled = true;
-                }
-                else
-                {
-                    button1.Enabled = false;
-                }
                 if (timer2.Enabled == false)
                 {
                     timer2.Enabled = true;
@@ -689,40 +681,11 @@ namespace MasterNodoOCB
             return result;
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            button1.Enabled = false;
-            string result = "";
-            string resu = "";
-            double enviar = Convert.ToDouble(Program.MyMonedas) - 1000;
-            result = InvokeMethod("sendocb", Program.MyWallet, Program.MyClavedestino, String.Format("{0:#######0.00000000}", Convert.ToDecimal(enviar)), "", "", "", "", "", "", "");
-            if (result.Length > 0)
-            {
-                string searchWithinThis = result;
-                string searchForThis = "Result";
-                int firstCharacter = searchWithinThis.IndexOf(searchForThis);
-                if (firstCharacter >= 0)
-                {
-                    JObject results = JObject.Parse(result);
-                    resu = results["Result"].ToString();
-                }
-            }
-            if (resu == "true")
-            {
-                Program.ganancia = 0;
-                MessageBox.Show("Transacción enviada a la red y será procesada en breve.", "Notificación");
-            }
-            else
-            {
-                button1.Enabled = true;
-                MessageBox.Show("Transacción no aceptada, verifique la dirección destino.", "Notificación");
-            }
-        }
-
         private void timer1_Tick(object sender, EventArgs e)
         {
             La_IP();
             timer1.Enabled = false;
+            this.backgroundWorker1.RunWorkerAsync(2000);
             this.backgroundWorker2.RunWorkerAsync(2000);
         }
 
@@ -792,7 +755,7 @@ namespace MasterNodoOCB
                         hr--;
                         mensaje.Text = "Procesando Ganancias.....";
                         notifyIcon1.Text = "MasterNodoOCB | " + "Procesando Ganancias.....";
-                        Program.ganancia = (1000 * 0.01);
+                        Program.ganancia = (1000 * 0.000416666666666667);
                         Program.procep = 1;
                         CreaG();
                     }
@@ -810,6 +773,10 @@ namespace MasterNodoOCB
                         indica = " minutos";
                         contador.Text = "Tiempo Restante: " + String.Format("{0:00}", hr) + ":" + String.Format("{0:00}", mr) + ":" + String.Format("{0:00}", sr) + indica;
                         notifyIcon1.Text = "MasterNodoOCB | " + "Tiempo Restante: " + String.Format("{0:00}", hr) + ":" + String.Format("{0:00}", mr) + ":" + String.Format("{0:00}", sr) + indica;
+                        if (mr == 55)
+                        {
+                            label6.Text = "";
+                        }
                     }
                     else
                     {
@@ -821,10 +788,10 @@ namespace MasterNodoOCB
                         }
                         else
                         {
-                            mensaje.Text = "Esperando.....";
-                            hr = 23;
-                            mr = 59;
-                            sr = 60;
+                            notifyIcon1.Text = "MasterNodoOCB | " + "Enviando Pago.....";
+                            mensaje.Text = "Procesando el pago de sus ganancias.....";
+                            contador.Text = "Enviando Pago.....";
+                            EnviarPago();
                         }
                     }
                 }
@@ -832,6 +799,40 @@ namespace MasterNodoOCB
             else
             {
                 contador.Text = "Nodo inactivo....";
+            }
+        }
+
+        public void EnviarPago()
+        {
+            string result = "";
+            string resu = "";
+            double enviar = Convert.ToDouble(Program.MyMonedas) - 1000;
+            result = InvokeMethod("sendocb", Program.MyWallet, Program.MyClavedestino, String.Format("{0:#######0.00000000}", Convert.ToDecimal(enviar)), "", "", "", "", "", "", "");
+            if (result.Length > 0)
+            {
+                string searchWithinThis = result;
+                string searchForThis = "Result";
+                int firstCharacter = searchWithinThis.IndexOf(searchForThis);
+                if (firstCharacter >= 0)
+                {
+                    JObject results = JObject.Parse(result);
+                    resu = results["Result"].ToString();
+                }
+            }
+            if (resu == "true")
+            {
+                Program.ganancia = 0;
+                mensaje.Text = "Esperando.";
+                label6.Text = "Transacción enviada a la red y será procesada en breve.";
+                hr = 23;
+                mr = 59;
+                sr = 60;
+            }
+            else
+            {
+                EnviarPago();
+                mensaje.Text = "Procesando el pago de sus ganancias.....";
+                label6.Text = "Transacción no aceptada, intentando nuevamente.";
             }
         }
 
