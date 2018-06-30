@@ -744,27 +744,40 @@ namespace MasterNodoOCB
         {
             if (Convert.ToDouble(Program.MyMonedas) >= 1000)
             {
-                sr--;
                 if (sr == 0)
                 {
                     sr = 60;
-                    mr--;
                     if (mr == 0)
                     {
                         mr = 59;
-                        hr--;
+                        if (hr > 0)
+                        {
+                            hr--;
+                        }
                         mensaje.Text = "Procesando Ganancias.....";
                         notifyIcon1.Text = "MasterNodoOCB | " + "Procesando Ganancias.....";
                         Program.ganancia = (1000 * 0.000416666666666667);
                         Program.procep = 1;
                         CreaG();
                     }
+                    else
+                    {
+                        mr--;
+                    }
+                }
+                else
+                {
+                    sr--;
                 }
                 if (hr > 0)
                 {
                     indica = " horas";
                     contador.Text = "Tiempo Restante: " + String.Format("{0:00}", hr) + ":" + String.Format("{0:00}", mr) + ":" + String.Format("{0:00}", sr) + indica;
                     notifyIcon1.Text = "MasterNodoOCB | " + "Tiempo Restante: " + String.Format("{0:00}", hr) + ":" + String.Format("{0:00}", mr) + ":" + String.Format("{0:00}", sr) + indica;
+                    if (mr == 58)
+                    {
+                        label6.Text = "";
+                    }
                 }
                 else
                 {
@@ -773,10 +786,6 @@ namespace MasterNodoOCB
                         indica = " minutos";
                         contador.Text = "Tiempo Restante: " + String.Format("{0:00}", hr) + ":" + String.Format("{0:00}", mr) + ":" + String.Format("{0:00}", sr) + indica;
                         notifyIcon1.Text = "MasterNodoOCB | " + "Tiempo Restante: " + String.Format("{0:00}", hr) + ":" + String.Format("{0:00}", mr) + ":" + String.Format("{0:00}", sr) + indica;
-                        if (mr == 55)
-                        {
-                            label6.Text = "";
-                        }
                     }
                     else
                     {
@@ -823,7 +832,7 @@ namespace MasterNodoOCB
             {
                 Program.ganancia = 0;
                 mensaje.Text = "Esperando.";
-                label6.Text = "Transacción enviada a la red y será procesada en breve.";
+                label6.Text = "Transacción enviada a la red por el monto de: " + String.Format("{0:#######0.00000000}", Convert.ToDecimal(enviar)) + " OCB y será procesada en breve.";
                 hr = 23;
                 mr = 59;
                 sr = 60;
