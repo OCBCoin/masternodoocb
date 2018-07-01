@@ -41,6 +41,8 @@
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.contador = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -52,8 +54,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.contador = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -153,6 +153,26 @@
             this.groupBox1.TabIndex = 31;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos del Nodo Maestro";
+            // 
+            // label6
+            // 
+            this.label6.Location = new System.Drawing.Point(8, 500);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(521, 23);
+            this.label6.TabIndex = 37;
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // contador
+            // 
+            this.contador.BackColor = System.Drawing.SystemColors.Control;
+            this.contador.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.contador.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.contador.Location = new System.Drawing.Point(73, 459);
+            this.contador.Name = "contador";
+            this.contador.Size = new System.Drawing.Size(388, 35);
+            this.contador.TabIndex = 36;
+            this.contador.Text = "Tiempo.....";
+            this.contador.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel1
             // 
@@ -265,26 +285,6 @@
             this.label2.TabIndex = 26;
             this.label2.Text = "Cargando Datos.....";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // contador
-            // 
-            this.contador.BackColor = System.Drawing.SystemColors.Control;
-            this.contador.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.contador.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.contador.Location = new System.Drawing.Point(73, 459);
-            this.contador.Name = "contador";
-            this.contador.Size = new System.Drawing.Size(388, 35);
-            this.contador.TabIndex = 36;
-            this.contador.Text = "Tiempo.....";
-            this.contador.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label6
-            // 
-            this.label6.Location = new System.Drawing.Point(8, 500);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(521, 23);
-            this.label6.TabIndex = 37;
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Form1
             // 

@@ -72,7 +72,7 @@ namespace MasterNodoOCB
             }
             catch (SQLiteException ex)
             {
-                MessageBox.Show("ERROR: " + ex.Message, "Notificación");
+                Console.WriteLine("Exception: " + ex.ToString());
             }
         }
 
@@ -98,7 +98,6 @@ namespace MasterNodoOCB
         {
             if (Program.MyWallet == "")
             {
-                DbContext.Up();
                 var ctx = DbContext.GetInstance();
                 for (var i = 1; i <= 1; i++)
                 {
@@ -120,9 +119,8 @@ namespace MasterNodoOCB
             }
             else
             {
-                DbContext.Up();
                 var ctx = DbContext.GetInstance();
-                var query = "UPDATE Users SET Monedas=?, LLavedestino=? WHERE LLave=?";
+                var query = "UPDATE Users SET Label=?, Monedas=?, LLavedestino=? WHERE LLave=?";
 
                 using (var command = new SQLiteCommand(query, ctx))
                 {
@@ -169,12 +167,12 @@ namespace MasterNodoOCB
                 }
                 else
                 {
-                    MessageBox.Show(mydata, "Notificación EC");
+                    Console.WriteLine("Notificación EC: " + mydata);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("ERROR: " + ex.Message, "Notificación");
+                Console.WriteLine("Exception: " + ex.ToString());
             }
         }
 
@@ -189,8 +187,6 @@ namespace MasterNodoOCB
         {
             try
             {
-                DbContext.Up();
-
                 foreach (var mmatrix in matrixServices.GetAll())
                 {
                     mtx++;
@@ -200,7 +196,7 @@ namespace MasterNodoOCB
             }
             catch (SQLiteException ex)
             {
-                MessageBox.Show("ERROR: " + ex.Message, "Notificación");
+                Console.WriteLine("Exception: " + ex.ToString());
             }
 
         }
@@ -292,7 +288,6 @@ namespace MasterNodoOCB
         {
             try
             {
-                DbContext.Up();
                 foreach (var mblock in blockServices.GetAll())
                 {
                     blk++;
@@ -302,7 +297,7 @@ namespace MasterNodoOCB
             }
             catch (SQLiteException ex)
             {
-                MessageBox.Show("ERROR: " + ex.Message, "Notificación");
+                Console.WriteLine("Exception: " + ex.ToString());
             }
 
         }
@@ -367,7 +362,6 @@ namespace MasterNodoOCB
             try
             {
                 double mone = 0;
-                DbContext.Up();
                 foreach (var mblockt in blocktransactionServices.GetAll())
                 {
                     blkt++;
@@ -390,7 +384,7 @@ namespace MasterNodoOCB
             }
             catch (SQLiteException ex)
             {
-                MessageBox.Show("ERROR: " + ex.Message, "Notificación");
+                Console.WriteLine("Exception: " + ex.ToString());
             }
 
         }
@@ -627,7 +621,7 @@ namespace MasterNodoOCB
                 label2.Text = "Billetera Destino: " + Program.MyClavedestino;
                 label3.Text = "Monedas: " + Program.MyMonedas + " OCB";
                 label4.Text = "IP Nodo: " + La_IP() + ":5993";
-                label5.Text = "Bloques: " + Program.lastblock.ToString();
+                label5.Text = "Bloques: " + Program.lastblock.ToString();                
                 start++;
                 if (start == 1)
                 {
@@ -675,7 +669,7 @@ namespace MasterNodoOCB
                 }
                 catch (Exception ec)
                 {
-                    MessageBox.Show("ERROR: " + ec.Message, "Notificación");
+                    Console.WriteLine("Exception: " + ec.ToString());
                 }
             }
             return result;

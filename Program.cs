@@ -20,7 +20,7 @@ namespace MasterNodoOCB
         public static string MyClavedestino = "";
         public static string Matrix = "";
         public static string cartera = "";
-        public static string resultw = "";
+        public static string resultw = "";        
         public static int lastblock = 0;
         public static int lasttrack = 0;
         public static int procep = 0;
